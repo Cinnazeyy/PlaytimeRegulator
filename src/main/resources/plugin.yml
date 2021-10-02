@@ -1,0 +1,8 @@
+main: github.PlaytimeRegulator.PlaytimeRegulator
+version: 0.1
+api-version: 1.16
+name: PlaytimeRegulator
+author: Cinnazeyy
+depend:
+
+commands:
