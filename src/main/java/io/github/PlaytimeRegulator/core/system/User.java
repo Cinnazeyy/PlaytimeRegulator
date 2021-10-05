@@ -2,6 +2,7 @@ package github.PlaytimeRegulator.core.system;
 
 import org.bukkit.Bukkit;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class User {
@@ -16,6 +17,16 @@ public class User {
     }
 
     public boolean isOnline() { return Bukkit.getPlayer(uuid) != null; }
+
+    public int accumulatedTicks () {
+        //For testing
+        //TODO: Database
+        return 20*60;
+    }
+
+    public int totalTicksPlayed;
+
+    public Date lastLoggedIn;
 
     public String getName() {
         //TODO: Database stuff

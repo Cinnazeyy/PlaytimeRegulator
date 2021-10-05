@@ -6,3 +6,7 @@ author: Cinnazeyy
 depend:
 
 commands:
+  ptreset:
+    description: Resets all playtime
+    usage: /ptreset
+    permission: playtime.admin
