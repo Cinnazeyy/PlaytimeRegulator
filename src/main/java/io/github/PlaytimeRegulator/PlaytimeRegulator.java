@@ -55,11 +55,12 @@ public class PlaytimeRegulator extends JavaPlugin {
                         player.kickPlayer("§aYou have run out of Playtime! Come back later...");
                         continue;
                     } else if (scoreInt <= 10) {
+                        // Whole Second Reminder
                         player.sendMessage("§4You only have " + scoreInt + " seconds left!");
                         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
                     }
 
-                    score.setScore(score.getScore() - 1 + givePlaytime(player, lastUpdatedHour));
+                    score.setScore((score.getScore() - 1) + givePlaytime(player));
 
                     // Show Title
                     TextComponent titleText = new TextComponent();
@@ -72,13 +73,14 @@ public class PlaytimeRegulator extends JavaPlugin {
 
     public void setupScoreboard() {
         manager = Bukkit.getScoreboardManager();
+        assert manager != null;
         board = manager.getNewScoreboard();
         playtimeObjective = board.registerNewObjective("playtime", "dummy", "Play Time");
         lastUpdatedHour = board.registerNewObjective("lastUpdated", "dummy", "Last Updated Hour");
     }
 
-    public int givePlaytime(Player player, Objective objective) {
-        int hourDifference = Utils.getCurrentHourInt() - objective.getScore(player.getName()).getScore();
+    public int givePlaytime(Player player) {
+        int hourDifference = Utils.getCurrentHourInt() - lastUpdatedHour.getScore(player.getName()).getScore();
         if (hourDifference >= 12) {
             int newPlaytime = 60 * 5 * hourDifference;
             player.sendMessage("§aYou received another " + Utils.getFormattedTime(newPlaytime) + " of playtime!");

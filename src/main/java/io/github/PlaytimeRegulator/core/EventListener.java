@@ -25,10 +25,11 @@ public class EventListener implements Listener {
 
         // Set Initial Playtime:
         if (playtimeScore.getScore() <= 0) {
-            if (!lastUpdatedScore.isScoreSet() || !playtimeScore.isScoreSet() || lastUpdatedScore.getScore() <= 0) {
+            if (!lastUpdatedScore.isScoreSet() || lastUpdatedScore.getScore() <= 0) {
                 PlaytimeRegulator.board.resetScores(player.getName());
                 lastUpdatedScore.setScore(Utils.getCurrentHourInt());
                 playtimeScore.setScore(60 * 60 * 2);
+                player.sendMessage("§aWelcome! You received 2 hours of starting playtime. Have Fun!");
             }
         }
         event.setJoinMessage("§l§7>> §r§6" + player.getName() + " has joined with a playtime of " + Utils.getFormattedTime(playtimeScore.getScore()));
